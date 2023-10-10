@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Название задачи</th>
+            <th>Описание задачи</th>
+            <th>Исполнитель</th>
+            <th>Статус</th>
+            <th>Дата создания</th>
+            <th>Дата завершения</th>
+        </tr>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{task.task_name}},</td>
+                    <td>{{task.description}},</td>
+                    <td>{{task.user.name}},</td>
+                    <td>{{task.status}},</td>
+                    <td>{{task.date_of_creation}},</td>
+                    <td>{{task.completion_date}}</td>
+                </tr>
+            {% endfor %}
+
+    </table>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New task</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'newtask' %}">
+        {% csrf_token %}
+        <table>
+            {{form}}
+        </table>
+        <br>
+        <input type="submit" value="Создать">
+    </form>
+</body>
+</html>
