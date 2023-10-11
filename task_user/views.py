@@ -25,6 +25,7 @@ def add_task(request):
             task = Task(
                 task_name=cd['task_name'],
                 description=cd['description'],
+                status=cd['status'],
                 completion_date=cd['completion_date'],
             )
             task.user_id = request.POST.get("user")

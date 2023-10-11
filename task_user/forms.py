@@ -11,13 +11,13 @@ class TaskForm(forms.Form):
 
     task_name = forms.CharField(max_length=256, required=True)
     description = forms.CharField(required=True)
-    # CHOICES_STATUS = (
-    #     ("Pending", "В ожидании"),
-    #     ("In the process.", "В процессе"),
-    #     ("Completed", "Завершено")
-    # )
+    CHOICES_STATUS = (
+        ("Pending", "В ожидании"),
+        ("In the process.", "В процессе"),
+        ("Completed", "Завершено")
+    )
     user = forms.ModelMultipleChoiceField(queryset=None)
-    # status = forms.ChoiceField(choices=CHOICES_STATUS, required=False)
+    status = forms.ChoiceField(choices=CHOICES_STATUS, required=True)
     completion_date = forms.DateTimeField(required=True)
 
 
