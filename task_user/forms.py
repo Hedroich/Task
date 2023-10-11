@@ -9,8 +9,8 @@ class TaskForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.fields["user"].queryset = User.objects.all()
 
-    task_name = forms.CharField(max_length=256, required=False)
-    description = forms.CharField(required=False)
+    task_name = forms.CharField(max_length=256, required=True)
+    description = forms.CharField(required=True)
     # CHOICES_STATUS = (
     #     ("Pending", "В ожидании"),
     #     ("In the process.", "В процессе"),
@@ -18,6 +18,6 @@ class TaskForm(forms.Form):
     # )
     user = forms.ModelMultipleChoiceField(queryset=None)
     # status = forms.ChoiceField(choices=CHOICES_STATUS, required=False)
-    completion_date = forms.DateTimeField(required=False)
+    completion_date = forms.DateTimeField(required=True)
 
 

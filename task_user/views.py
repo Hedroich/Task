@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Task, User
 from .forms import TaskForm
@@ -16,7 +17,7 @@ def add_task(request):
         "form": TaskForm(),
         "users": User.objects.all(),
     }
-    f = request.POST.get("user")
+
     if request.method == 'POST':
         task_form = TaskForm(request.POST, request.FILES)
         if task_form.is_valid():
@@ -24,9 +25,16 @@ def add_task(request):
             task = Task(
                 task_name=cd['task_name'],
                 description=cd['description'],
-                # status=cd['status'],
                 completion_date=cd['completion_date'],
             )
             task.user_id = request.POST.get("user")
             task.save()
     return render(request, "new_task.html", context)
+
+
+def show_task(request, task_id):
+    obj = Task.objects.get(id=task_id)
+    context = {
+        "task": obj
+    }
+    return render(request, "task_view.html", context)
