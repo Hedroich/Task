@@ -28,5 +28,11 @@ class Task(models.Model):
         return self.task_name
 
     def get_absolut_url(self):
-        return reverse('task', kwargs={'task_id':self.pk})
+        return reverse('task', kwargs={'task_id': self.pk})
+
+
+class Comment(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    massage = models.TextField(blank=True)
 

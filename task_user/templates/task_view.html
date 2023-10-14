@@ -5,6 +5,7 @@
     <title>Task view</title>
 </head>
 <body>
+    <h1 align="middle">Описание задачи</h1>
     <h3>Название:</h3>
     <p>{{task.task_name}}</p>
     <h3>Описание:</h3>
@@ -13,9 +14,23 @@
     <p>{{task.user}}</p>
     <h3>Статус:</h3>
     <p>{{task.status}}</p>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{status_form}}
+        </table>
+        <input type="submit" value="Обновить">
+    </form>
     <h3>Дата создания задачи:</h3>
     <p>{{task.date_of_creation}}</p>
     <h3>Дата завершения задачи:</h3>
     <p>{{task.completion_date}}</p>
+    <h1 align="middle">Комментарии:</h1>
+    <hr>
+    {% for comment in comments %}
+    <p>{{comment.user}}:</p>
+    <p>{{comment.massage}}</p>
+    <hr>
+    {% endfor %}
 </body>
 </html>
