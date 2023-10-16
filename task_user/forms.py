@@ -1,20 +1,27 @@
 from django import forms
-from .models import User
+from .models import CustomUser
 from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth import get_user_model
-#
-# User = get_user_model()
-class CreationForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = ("name", "email", "password")
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ("email",)
+
+
+class CustomUserChangeForm(UserChangeForm):
+
+    class Meta:
+        model = CustomUser
+        fields = ("email",)
 
 
 class TaskForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["user"].queryset = User.objects.all()
+        self.fields["user"].queryset = CustomUser.objects.all()
 
     task_name = forms.CharField(max_length=256, required=True, label="Имя задачи")
     description = forms.CharField(required=True, label="Описание")

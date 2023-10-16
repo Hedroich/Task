@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Task, User, Comment
 from .forms import TaskForm, StatusForm
-from django.views.generic import CreateView
-from .forms import CreationForm
-from django.urls import reverse_lazy
-from django.contrib.auth import authenticate, login
-# Create your views here.
+from django.shortcuts import render
+
+from .forms import CustomUserCreationForm
+from .models import *
 
 def main(request):
         return render(request, "main.html")
@@ -21,7 +19,7 @@ def add_task(request):
 
     context = {
         "form": TaskForm(),
-        "users": User.objects.all(),
+        "users": CustomUser.objects.all(),
     }
 
     if request.method == 'POST':
@@ -54,3 +52,11 @@ def show_task(request, task_id):
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
     return render(request, "task_view.html", context)
+
+
+def users(request):
+
+    context = {
+        "form": CustomUserCreationForm(),
+    }
+    return render(request, "users.html", context)

@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'task_user.apps.TaskUserConfig',
-    'users.apps.UsersConfig',
+    'task_user.apps.TaskUserConfig'
 ]
 
 MIDDLEWARE = [
@@ -128,7 +127,7 @@ STATIC_ROOT = 'static/' #os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = "users.CustomUser"
+AUTH_USER_MODEL = "task_user.CustomUser"
 
 LOGIN_URL = "auth/login"
 
