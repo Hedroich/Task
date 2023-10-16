@@ -1,12 +1,14 @@
 from django.shortcuts import render
+
+from .forms import CustomUserCreationForm
 from .models import *
 
 
 # Create your views here.
 
 def users(request):
-    users = CustomUserManager.objects.all()
+
     context = {
-        users,
+        "form": CustomUserCreationForm(),
     }
     return render(request, "users.html", context)

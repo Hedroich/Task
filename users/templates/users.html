@@ -5,6 +5,10 @@
     <title>Users</title>
 </head>
 <body>
-    {{users}}
+    <form method="POST" action="{% url 'newtask' %}">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Создать">
+    </form>
 </body>
 </html>
