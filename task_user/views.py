@@ -113,11 +113,12 @@ def users(request):
                 user = CustomUser(
                     name=cd['name'],
                     email=cd['email'],
-                    # password=cd['password1'],
                 )
-                user.set_password("password1")
+                user.set_password("password2")
                 user.is_staff = True
+                user.is_superuser = True
                 user.save()
+
                 return redirect("main")
 
         return render(request, "users.html", context)
