@@ -5,6 +5,10 @@
     <title>New task</title>
 </head>
 <body>
+    {% if user.is_authenticated %}
+      {{ user.username }}
+      <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% endif %}
     <form method="POST" action="{% url 'newtask' %}">
         {% csrf_token %}
         <table>

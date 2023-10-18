@@ -5,6 +5,10 @@
     <title>Tasks</title>
 </head>
 <body>
+    {% if user.is_authenticated %}
+      {{ user.username }}
+      <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% endif %}
     <table>
         <tr>
             <th>Название задачи</th>
@@ -17,7 +21,7 @@
             {% for task in tasks %}
                 <tr>
 
-                    <td class="link-show-task"><a href="{{ task.get_absolut_url }}">{{task.task_name}}</a>></td>
+                    <td><a href="{{ task.get_absolut_url }}">{{task.task_name}}</a></td>
                     <td>{{task.description}}</td>
                     <td>{{task.user.name}}</td>
                     <td>{{task.status}}</td>

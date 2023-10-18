@@ -5,6 +5,10 @@
     <title>Main</title>
 </head>
 <body>
+    {% if user.is_authenticated %}
+      {{ user.username }}
+      <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% endif %}
     <div align="middle">
         <a href="{% url 'alltasks' %}" >Все задачи</a><br>
         <a href="{% url 'newtask' %}">Добавить задачу</a>

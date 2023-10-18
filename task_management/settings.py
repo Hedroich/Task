@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'task_user.apps.TaskUserConfig'
+    'task_user.apps.TaskUserConfig',
 ]
 
 MIDDLEWARE = [
@@ -129,5 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "task_user.CustomUser"
 
-LOGIN_URL = "auth/login"
+LOGIN_URL = "login/"
+
+LOGIN_REDIRECT_URL = "main"
+LOGOUT_REDIRECT_URL = "main"
 

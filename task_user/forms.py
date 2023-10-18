@@ -5,16 +5,17 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 class CustomUserCreationForm(UserCreationForm):
+
     class Meta:
         model = CustomUser
-        fields = ("email",)
+        fields = ("name", "email",)
 
 
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
-        fields = ("email",)
+        fields = ("name", "email",)
 
 
 class TaskForm(forms.Form):
@@ -37,10 +38,14 @@ class TaskForm(forms.Form):
 
 class StatusForm(forms.Form):
     CHOICES_STATUS = (
-        ("In the process.", "В процессе"),
-        ("Completed", "Завершено")
+        ("В процессе", "В процессе"),
+        ("Завершено", "Завершено")
     )
     update_status = forms.ChoiceField(choices=CHOICES_STATUS, label="Обновить статус")
+
+
+class CommentForm(forms.Form):
+    massage = forms.CharField(label="Комментарий")
 
 
 
