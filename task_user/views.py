@@ -114,7 +114,7 @@ def users(request):
                     name=cd['name'],
                     email=cd['email'],
                 )
-                user.set_password("password2")
+                user.set_password(cd["password1"])
                 user.is_staff = True
                 user.is_superuser = True
                 user.save()
