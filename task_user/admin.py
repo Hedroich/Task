@@ -37,5 +37,5 @@ class TaskAdmin(admin.ModelAdmin):
 
 
 @admin.register(Comment)
-class TaskAdmin(admin.ModelAdmin):
+class CommentAdmin(admin.ModelAdmin):
     list_display = ("task", "user", "massage")

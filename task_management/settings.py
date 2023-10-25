@@ -135,5 +135,5 @@ AUTH_USER_MODEL = "task_user.CustomUser"
 LOGIN_URL = "login/"
 
 LOGIN_REDIRECT_URL = "main"
-LOGOUT_REDIRECT_URL = "main"
+LOGOUT_REDIRECT_URL = "index"
 
