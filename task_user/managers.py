@@ -20,6 +20,7 @@ class CustomUserManager(BaseUserManager):
         user.save()
         return user
 
+
     def create_superuser(self, name: str, email: str, password: str, **extra_fields: str) -> Manager:
         """
         Create and save a SuperUser with the given email and password.
