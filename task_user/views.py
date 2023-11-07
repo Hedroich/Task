@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import redirect, render
 from .forms import TaskForm, StatusForm
 from .forms import CustomUserCreationForm, CommentForm
@@ -7,16 +7,16 @@ from .models import *
 
 
 @login_required(login_url='index', redirect_field_name=None)
-def main(request: str) -> HttpResponse:
+def main(request: HttpRequest) -> HttpResponse:
     return render(request, "main.html")
 
 
-def index(request: str) -> HttpResponse:
+def index(request: HttpRequest) -> HttpResponse:
     return render(request, "index.html")
 
 
 @login_required(login_url='index', redirect_field_name=None)
-def all_tasks(request: str) -> HttpResponse:
+def all_tasks(request: HttpRequest) -> HttpResponse:
     context = {
         "tasks": Task.objects.all(),
     }
@@ -24,7 +24,7 @@ def all_tasks(request: str) -> HttpResponse:
 
 
 @login_required(login_url='index', redirect_field_name=None)
-def add_task(request: str) -> HttpResponse:
+def add_task(request: HttpRequest) -> HttpResponse:
     context = {
         "form": TaskForm(),
         "users": CustomUser.objects.all(),
@@ -46,7 +46,7 @@ def add_task(request: str) -> HttpResponse:
 
 
 @login_required(login_url='index', redirect_field_name=None)
-def show_task(request: str, task_id: int) -> HttpResponse:
+def show_task(request: HttpRequest, task_id: int) -> HttpResponse:
     object = Task.objects.get(id=task_id)
     comments = Comment.objects.filter(task=task_id)
     context = {
@@ -64,7 +64,7 @@ def show_task(request: str, task_id: int) -> HttpResponse:
 
 
 @login_required(login_url='index', redirect_field_name=None)
-def add_comment(request: str, task_id: int) -> HttpResponse:
+def add_comment(request: HttpRequest, task_id: int) -> HttpResponse:
     context = {
         "form_comment": CommentForm(),
     }
@@ -84,7 +84,7 @@ def add_comment(request: str, task_id: int) -> HttpResponse:
     return render(request, "new_comment.html", context)
 
 
-def users(request: str) -> HttpResponse:
+def users(request: HttpRequest) -> HttpResponse:
     if request.user.is_authenticated:
         return render(request, "main.html")
     else:
