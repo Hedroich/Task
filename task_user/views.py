@@ -7,16 +7,16 @@ from .models import *
 
 
 @login_required(login_url='index', redirect_field_name=None)
-def main(request) -> HttpResponse:
+def main(request: str) -> HttpResponse:
     return render(request, "main.html")
 
 
-def index(request) -> HttpResponse:
+def index(request: str) -> HttpResponse:
     return render(request, "index.html")
 
 
 @login_required(login_url='index', redirect_field_name=None)
-def all_tasks(request) -> HttpResponse:
+def all_tasks(request: str) -> HttpResponse:
     context = {
         "tasks": Task.objects.all(),
     }
@@ -24,7 +24,7 @@ def all_tasks(request) -> HttpResponse:
 
 
 @login_required(login_url='index', redirect_field_name=None)
-def add_task(request) -> HttpResponse:
+def add_task(request: str) -> HttpResponse:
     context = {
         "form": TaskForm(),
         "users": CustomUser.objects.all(),
@@ -46,7 +46,7 @@ def add_task(request) -> HttpResponse:
 
 
 @login_required(login_url='index', redirect_field_name=None)
-def show_task(request, task_id) -> HttpResponse:
+def show_task(request: str, task_id: int) -> HttpResponse:
     object = Task.objects.get(id=task_id)
     comments = Comment.objects.filter(task=task_id)
     context = {
@@ -64,7 +64,7 @@ def show_task(request, task_id) -> HttpResponse:
 
 
 @login_required(login_url='index', redirect_field_name=None)
-def add_comment(request,task_id) -> HttpResponse:
+def add_comment(request: str, task_id: int) -> HttpResponse:
     context = {
         "form_comment": CommentForm(),
     }
@@ -84,7 +84,7 @@ def add_comment(request,task_id) -> HttpResponse:
     return render(request, "new_comment.html", context)
 
 
-def users(request) -> HttpResponse:
+def users(request: str) -> HttpResponse:
     if request.user.is_authenticated:
         return render(request, "main.html")
     else:
